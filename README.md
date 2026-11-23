@@ -8,7 +8,7 @@ The repository at <https://github.com/RatioJuris/MD-Reader> is the source of tru
 
 - Pushes to `main` and pull requests produce a ZIP build artifact through GitHub Actions.
 - Tags beginning with `v` attach the same ZIP to a GitHub Release.
-- To build locally on Windows: `pwsh -File scripts/build.ps1`. The package is written to `build/`.
+- To build locally on Windows: `powershell -ExecutionPolicy Bypass -File scripts\build.ps1`. The package is written to `build/`.
 
 ## Install (unpacked, Chromium)
 
