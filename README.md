@@ -6,9 +6,12 @@ MD Reader is a browser extension that turns raw Markdown into a clean, readable 
 
 The repository at <https://github.com/RatioJuris/MD-Reader> is the source of truth for builds.
 
-- Pushes to `main` and pull requests produce a ZIP build artifact through GitHub Actions.
-- Tags beginning with `v` attach the same ZIP to a GitHub Release.
-- To build locally on Windows: `powershell -ExecutionPolicy Bypass -File scripts\build.ps1`. The package is written to `build/`.
+- Pushes to `main` and pull requests produce an unpackable extension ZIP plus self-contained installers for Windows, macOS and Linux through GitHub Actions.
+- Tags beginning with `v` attach all packages to a GitHub Release.
+- To build locally on Windows: `powershell -ExecutionPolicy Bypass -File scripts\build.ps1`. Packages are written to `build/`.
+- To build every package where `bash`, `jq` and `zip` are available: `bash scripts/package.sh`.
+
+See `installers/README.md` for the agent-friendly installer contract, flags and JSON output.
 
 ## Install (unpacked, Chromium)
 

@@ -13,25 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Read version from manifest
-        id: version
-        run: echo "value=$(jq -r .version manifest.json)" >> "$GITHUB_OUTPUT"
+      - name: Package extension and installers
+        run: bash scripts/package.sh
 
-      - name: Package extension
-        run: |
-          mkdir -p build/stage
-          cp -r manifest.json background.js content.js content.css shared.js lib popup reader README.md build/stage/
-          cd build/stage
-          zip -r "../md-reader-${{ steps.version.outputs.value }}.zip" .
-
-      - name: Upload build artifact
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: md-reader
-          path: build/*.zip
+          path: build/dist/*
 
-      - name: Attach build to release
+      - name: Attach builds to release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: build/*.zip
+          files: build/dist/*
