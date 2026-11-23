@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MD Reader</title>
+  <link rel="stylesheet" href="../content.css">
+  <link rel="stylesheet" href="reader.css">
+</head>
+<body class="reader-page" data-theme="light">
+  <div class="reader-progress" aria-hidden="true"><div id="progressBar"></div></div>
+
+  <header class="reader-topbar">
+    <div class="reader-brand">MD <strong>Reader</strong></div>
+    <div id="sourceLabel" class="reader-source">Markdown document</div>
+    <div class="reader-actions">
+      <button type="button" id="tocBtn" title="Toggle outline">Outline</button>
+      <button type="button" id="themeBtn" title="Switch light, dark or system theme">Theme: auto</button>
+      <button type="button" id="copyHtmlBtn">Copy HTML</button>
+      <button type="button" id="copyMdBtn">Copy Markdown</button>
+      <button type="button" id="printBtn" class="accent">Print / PDF</button>
+    </div>
+  </header>
+
+  <div class="reader-layout">
+    <aside id="toc" class="reader-toc" aria-label="Document outline">
+      <div class="toc-title">On this page</div>
+      <div id="tocList"></div>
+    </aside>
+
+    <main class="reader-main">
+      <article id="content" class="markdown-body"></article>
+      <footer id="stats" class="reader-stats"></footer>
+    </main>
+  </div>
+
+  <script src="../lib/marked.min.js"></script>
+  <script src="../lib/purify.min.js"></script>
+  <script src="../shared.js"></script>
+  <script src="reader.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+/* MD Reader — reader page layout. Typography lives in ../content.css. */
+
+body.reader-page {
+  margin: 0;
+  background: var(--mdreader-bg);
+  color: var(--mdreader-fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.reader-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: transparent;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0;
+  background: var(--mdreader-link);
+  transition: width 0.1s linear;
+}
+
+.reader-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 56px;
+  padding: 0 18px;
+  background: var(--mdreader-bar);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--mdreader-border);
+}
+
+.reader-brand {
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.reader-brand strong { font-weight: 750; }
+
+.reader-source {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--mdreader-muted);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader-actions {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.reader-actions button {
+  padding: 6px 10px;
+  border: 1px solid var(--mdreader-border);
+  border-radius: 6px;
+  background: var(--mdreader-bg);
+  color: var(--mdreader-fg);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.reader-actions button:hover {
+  border-color: var(--mdreader-link);
+  color: var(--mdreader-link);
+}
+
+.reader-actions .accent {
+  border-color: var(--mdreader-link);
+  background: var(--mdreader-link);
+  color: #ffffff;
+}
+
+.reader-actions .accent:hover { color: #ffffff; filter: brightness(1.08); }
+
+.reader-layout {
+  display: flex;
+  align-items: flex-start;
+}
+
+.reader-toc {
+  position: sticky;
+  top: 56px;
+  flex: 0 0 252px;
+  width: 252px;
+  max-height: calc(100vh - 56px);
+  overflow: auto;
+  padding: 26px 12px 40px 20px;
+  border-right: 1px solid var(--mdreader-border);
+  font-size: 12.5px;
+}
+
+.reader-toc[hidden] { display: none; }
+
+.toc-title {
+  margin-bottom: 10px;
+  color: var(--mdreader-muted);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reader-toc a {
+  display: block;
+  padding: 4px 8px;
+  border-left: 2px solid transparent;
+  border-radius: 0 4px 4px 0;
+  color: var(--mdreader-muted);
+  text-decoration: none;
+}
+
+.reader-toc a:hover { color: var(--mdreader-fg); }
+
+.reader-toc a.active {
+  border-left-color: var(--mdreader-link);
+  background: var(--mdreader-code-bg);
+  color: var(--mdreader-link);
+  font-weight: 600;
+}
+
+.reader-toc .toc-h3 { padding-left: 20px; }
+.reader-toc .toc-h4 { padding-left: 32px; }
+.reader-toc .toc-h5 { padding-left: 44px; }
+.reader-toc .toc-h6 { padding-left: 56px; }
+
+.reader-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.reader-stats {
+  display: flex;
+  gap: 20px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 18px 28px 60px;
+  border-top: 1px solid var(--mdreader-border);
+  color: var(--mdreader-muted);
+  font-size: 12px;
+}
+
+.reader-welcome { padding: 34px 0; }
+.reader-welcome h1 { font-size: 2.1em; }
+.reader-welcome ol { padding-left: 1.4em; }
+.reader-welcome li { margin-bottom: 0.5em; }
+
+.reader-notice {
+  margin: 20px 0;
+  padding: 12px 14px;
+  border: 1px solid var(--mdreader-border);
+  border-left: 4px solid var(--mdreader-link);
+  border-radius: 6px;
+  background: var(--mdreader-code-bg);
+}
+
+@media (max-width: 900px) {
+  .reader-toc { display: none; }
+  .reader-source { display: none; }
+}
+
+@media (max-width: 640px) {
+  .reader-topbar { gap: 8px; padding: 0 10px; }
+  .reader-actions { gap: 4px; }
+  .reader-actions button { padding: 5px 7px; font-size: 11px; }
+  #copyHtmlBtn, #copyMdBtn { display: none; }
+}
+
+@media print {
+  .reader-topbar,
+  .reader-toc,
+  .reader-progress,
+  .reader-stats,
+  .md-code-copy { display: none !important; }
+  body.reader-page { background: #ffffff; color: #000000; }
+  .markdown-body { max-width: none; padding: 0; }
+  .markdown-body pre,
+  .markdown-body table,
+  .markdown-body blockquote { break-inside: avoid; }
+}

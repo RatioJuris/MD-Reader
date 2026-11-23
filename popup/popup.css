@@ -1,0 +1,184 @@
+:root {
+  color-scheme: light dark;
+  --pop-bg: #ffffff;
+  --pop-fg: #1f2328;
+  --pop-muted: #59636e;
+  --pop-border: #d8dee4;
+  --pop-accent: #0969da;
+  --pop-soft: #f6f8fa;
+  --pop-error: #cf222e;
+  --pop-success: #1a7f37;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pop-bg: #0d1117;
+    --pop-fg: #e6edf3;
+    --pop-muted: #9198a1;
+    --pop-border: #30363d;
+    --pop-accent: #4493f8;
+    --pop-soft: #161b22;
+    --pop-error: #ff7b72;
+    --pop-success: #3fb950;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 380px;
+  margin: 0;
+  background: var(--pop-bg);
+  color: var(--pop-fg);
+  font: 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--pop-border);
+}
+
+.logo { font-size: 16px; letter-spacing: 0.01em; }
+.logo strong { font-weight: 750; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.mini {
+  padding: 4px 8px;
+  border: 1px solid var(--pop-border);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--pop-muted);
+  font-size: 11px;
+}
+
+.mini:hover { color: var(--pop-accent); border-color: var(--pop-accent); }
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--pop-border);
+}
+
+.tab {
+  flex: 1;
+  padding: 9px 4px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--pop-muted);
+}
+
+.tab:hover { color: var(--pop-fg); }
+.tab.active { color: var(--pop-accent); border-bottom-color: var(--pop-accent); font-weight: 650; }
+
+main { padding: 14px; }
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--pop-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+textarea,
+input[type="url"] {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--pop-border);
+  border-radius: 6px;
+  background: var(--pop-bg);
+  color: var(--pop-fg);
+  font: inherit;
+  outline: none;
+}
+
+textarea { height: 180px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; line-height: 1.55; }
+textarea:focus, input[type="url"]:focus { border-color: var(--pop-accent); box-shadow: 0 0 0 2px rgba(9, 105, 218, 0.15); }
+
+.primary {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--pop-accent);
+  border-radius: 6px;
+  background: var(--pop-accent);
+  color: #ffffff;
+  font-weight: 650;
+}
+
+.primary:hover:not(:disabled) { filter: brightness(1.08); }
+.primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.hint {
+  margin: 8px 0 0;
+  color: var(--pop-muted);
+  font-size: 11px;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 130px;
+  border: 1.5px dashed var(--pop-border);
+  border-radius: 8px;
+  background: var(--pop-soft);
+  color: var(--pop-muted);
+  cursor: pointer;
+  text-align: center;
+}
+
+.dropzone:hover,
+.dropzone.dragging { border-color: var(--pop-accent); color: var(--pop-accent); }
+.dropzone strong { color: var(--pop-fg); }
+.dropzone small { font-size: 11px; }
+
+.drop-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--pop-accent);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.filename {
+  margin-top: 8px;
+  overflow: hidden;
+  color: var(--pop-muted);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status { padding: 0 14px; font-size: 11px; }
+.status:not(:empty) { padding-top: 2px; padding-bottom: 8px; }
+.status.error { color: var(--pop-error); }
+.status.ok { color: var(--pop-success); }
+
+.file-hint {
+  padding: 10px 14px;
+  border-top: 1px solid var(--pop-border);
+  background: var(--pop-soft);
+  color: var(--pop-muted);
+  font-size: 11px;
+}
+
+.file-hint a { color: var(--pop-accent); }
+.file-hint code { font-size: 10px; }

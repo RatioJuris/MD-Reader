@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MD Reader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="popup-header">
+    <div class="logo">MD <strong>Reader</strong></div>
+    <button type="button" id="openReaderBtn" class="mini">Open reader tab</button>
+  </header>
+
+  <nav class="tabs" aria-label="Markdown source">
+    <button type="button" class="tab active" data-tab="paste">Paste</button>
+    <button type="button" class="tab" data-tab="file">File</button>
+    <button type="button" class="tab" data-tab="url">URL</button>
+    <button type="button" class="tab" data-tab="tab">Tab</button>
+  </nav>
+
+  <main>
+    <section class="panel active" id="panel-paste">
+      <label class="field-label" for="pasteInput">Markdown text</label>
+      <textarea id="pasteInput" spellcheck="false" placeholder="# Your document&#10;&#10;Write **Markdown** here…"></textarea>
+      <button type="button" id="pasteRender" class="primary">Render &amp; open</button>
+      <p class="hint">Tip: press Ctrl + Enter to render.</p>
+    </section>
+
+    <section class="panel" id="panel-file">
+      <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Choose or drop a Markdown file">
+        <span class="drop-icon">MD</span>
+        <span>Drop a <strong>.md</strong> file here</span>
+        <small>or click to choose a file</small>
+      </div>
+      <input type="file" id="fileInput" accept=".md,.markdown,.mdown,.mkd,.txt,text/markdown,text/plain" hidden>
+      <div id="fileName" class="filename">No file selected</div>
+      <button type="button" id="fileRender" class="primary" disabled>Render &amp; open</button>
+    </section>
+
+    <section class="panel" id="panel-url">
+      <label class="field-label" for="urlInput">Markdown URL</label>
+      <input type="url" id="urlInput" placeholder="https://example.com/notes.md" spellcheck="false">
+      <button type="button" id="urlRender" class="primary">Fetch &amp; render</button>
+      <p class="hint">Works with raw Markdown files and public links.</p>
+    </section>
+
+    <section class="panel" id="panel-tab">
+      <p class="hint">Use the Markdown source of the active tab. Local files need file access enabled.</p>
+      <button type="button" id="tabRender" class="primary">Read current tab</button>
+    </section>
+  </main>
+
+  <div id="globalStatus" class="status" role="status" aria-live="polite"></div>
+
+  <footer id="fileHint" class="file-hint" hidden>
+    To open local <code>.md</code> files directly, enable <strong>Allow access to file URLs</strong> for MD Reader.
+    <a href="#" id="fileAccessLink">Open extension settings</a>
+  </footer>
+
+  <script src="../lib/marked.min.js"></script>
+  <script src="../lib/purify.min.js"></script>
+  <script src="../shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

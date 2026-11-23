@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "MD Reader",
+  "short_name": "MD Reader",
+  "version": "0.1.0",
+  "description": "Turns raw Markdown into a clean, readable page in your browser — from local files, URLs, or pasted text.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "file:///*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "MD Reader — open Markdown",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "file:///*",
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "lib/marked.min.js",
+        "lib/purify.min.js",
+        "shared.js",
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "reader/*",
+        "popup/*",
+        "content.css",
+        "lib/*",
+        "shared.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
